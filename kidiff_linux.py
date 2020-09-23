@@ -1550,10 +1550,11 @@ def startWebServer(port):
 
 
 def parse_cli_args():
+    osDisplay = os.getenv("DISPLA") or ":0.0"
     parser = argparse.ArgumentParser(description='Kicad PCB visual diffs.')
     parser.add_argument('-a', "--commit1", type=str, help="Commit1")
     parser.add_argument('-b', "--commit2", type=str, help="Commit2")
-    parser.add_argument('-d', "--display", type=str, help="Set DISPLAY value, default :1.0", default=':1.0')
+    parser.add_argument('-d', "--display", type=str, help="Set DISPLAY value, default " + osDisplay, default=osDisplay)
     parser.add_argument('-p', "--port", type=int, help="Set webserver port", default=9092)
     parser.add_argument('-s', "--scm", type=str,  help="Select SCM (Git, SVN, Fossil)")
     parser.add_argument('-w', "--webserver-disable", action='store_true', help="Does not execute webserver (just generate images)")
